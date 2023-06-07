@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   
-  root "employers#index"
+  root "job_details#index"
 
-  resources :employers
+  resources :employers, :job_details
   devise_for :employers
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
