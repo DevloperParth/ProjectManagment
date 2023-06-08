@@ -1,1 +1,17 @@
 <h1><%= @job_detail.Job_title %></h1>
+
+<p><%= @job_detail.Job_summary %></p>
+
+<p><%= @job_detail.Qualification_skills %></p>
+
+<p><%= @job_detail.Experience %></p>
+
+<p><%= @job_detail.salary %></p>
+
+<ul>
+  <li><%= link_to "Edit", edit_job_detail_path(@job_detail) %></li>
+  <li><%= link_to "Destroy", job_detail_path(@job_detail), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li>
+</ul>

@@ -1,0 +1,30 @@
+<%= form_with model: @job_detail do |form| %>
+  <div>
+    <%= form.label :Job_title %><br>
+    <%= form.text_field :Job_title %>
+  </div>
+
+  <div>
+    <%= form.label :Job_summary %><br>
+    <%= form.text_area :Job_summary %>
+  </div>
+
+  <div>
+    <%= form.label :Qualification_skills %><br>
+    <%= form.text_area :Qualification_skills %>
+  </div>
+
+  <div>
+    <%= form.label :Experience %><br>
+    <%= form.text_area :Experience %>
+  </div>
+
+  <div>
+    <%= form.label :salary %><br>
+    <%= form.text_area :salary %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
