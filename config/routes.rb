@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
   
-  root "job_details#index"
+  root "users#index"
 
-  resources :employers, :job_details
-  devise_for :employers
+  devise_for :users
   
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources  :job_details, :users
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  #root "users#index"
+  
 end

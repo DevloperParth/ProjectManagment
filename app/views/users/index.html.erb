@@ -1,0 +1,26 @@
+<h1>Welcome To Portal</h1>
+
+<% if current_user %>
+    <p> Hello <%= current_user.email %>!</p>
+    <p> You are a <%= current_user.role %> </p>
+    <% if current_user.admin?%>
+        <%= User.count %>
+    <%end%>    
+    <p>
+        You have successfully authenticated with account.
+    </p>
+
+    <%= button_to "logout", destroy_user_session_path, method: :delete  %>
+
+
+<% else %>
+    <h3> Your are not Signed_in. You have to Signed_in first or have to Login first.</h3> 
+    <%= link_to "Sign up",new_user_registration_path %> 
+    <br /> 
+    <%= link_to "Login", new_user_session_path %>
+    <br /> 
+    
+<% end %>
+
+
+
