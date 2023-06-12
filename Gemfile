@@ -14,6 +14,8 @@ gem "pg", "~> 1.1"
 
 gem 'devise'
 
+gem 'byebug'
+
 gem 'rolify'
 
 # Use the Puma web server [https://github.com/puma/puma]

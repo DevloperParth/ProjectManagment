@@ -1,0 +1,16 @@
+<h1><%= @employer.name %></h1>
+
+<h3>Jobs</h3>
+<ul>
+  <% @employer.job_details.each do |job| %>
+  <li><%= link_to job.Job_title, job_details_path(job) %></li>
+  <% end %>
+</ul><br>
+
+<ul>
+  <li><%= link_to "Edit", edit_employer_path(@employer) %></li>
+  <li><%= link_to "Destroy", employer_path(@employer), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li>
+</ul>
