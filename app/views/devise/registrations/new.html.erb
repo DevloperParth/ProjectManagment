@@ -15,11 +15,10 @@
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
-
-  <div>
-     <%= f.label :role %><br />
-     <%= f.text_field :role, autofocus: true %>
-  </div>
+  <div class="field">
+  <%= f.radio_button :role, "employe" %> employe
+  <%= f.radio_button :role, "employer" %> employer
+</div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
