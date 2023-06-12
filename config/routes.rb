@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :admin
   end
   namespace :employee do
-    resources :users
+    resources :job_details
   end
   #root "users#index"
   
