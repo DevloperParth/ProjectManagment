@@ -16,6 +16,9 @@ gem 'devise'
 
 gem 'byebug'
 
+gem  'carrierwave'
+gem  'bootstrap-sass'
+
 gem 'rolify'
 
 # Use the Puma web server [https://github.com/puma/puma]
