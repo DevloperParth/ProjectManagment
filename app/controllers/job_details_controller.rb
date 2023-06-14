@@ -8,12 +8,14 @@ class JobDetailsController < ApplicationController
   end
   
   def new
+    @employer = Employer.find(params[:employer_id])
     @job_detail = JobDetail.new
   end
 
   def create
-    @job_detail = JobDetail.create(job_params)
-    if @job_detail.save
+    @employer = Employer.find(params[:employer_id])
+    @job_detail = @employer.job_details.new(job_params)
+    if @job_detail.save!
       redirect_to @job_detail
     else
       render :new, status: :unprocessable_entity
@@ -37,6 +39,7 @@ class JobDetailsController < ApplicationController
   def destroy
     @job_detail = JobDetail.find(params[:id])
     @job_detail.destroy
+
 
     redirect_to root_path, status: :see_other
   end

@@ -1,4 +1,4 @@
-<%= form_with model: @job_detail do |form| %>
+<%= form_with model: [@employer, @job_detail] do |form| %>
   <div>
     <%= form.label :Job_title %><br>
     <%= form.text_field :Job_title %>
