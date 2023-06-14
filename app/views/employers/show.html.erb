@@ -8,6 +8,7 @@
 </ul><br>
 
 <ul>
+  <li><%= link_to "Create New Job",new_job_detail_path(@job_detail) %></li>
   <li><%= link_to "Edit", edit_employer_path(@employer) %></li>
   <li><%= link_to "Destroy", employer_path(@employer), data: {
                     turbo_method: :delete,

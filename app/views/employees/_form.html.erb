@@ -1,17 +1,64 @@
-<%= form_with(model: employee) do |form| %>
-  <% if employee.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
-
+<% if !employee.errors.empty? %>
+   <div class = "alert alert-error">
+      
       <ul>
-        <% employee.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
+         <% @employee.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+         <% end %>
       </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.submit %>
-  </div>
+      
+   </div>
 <% end %>
+
+<div class = "well">
+   <%= form_with model: @employee do |f| %>
+      <div>
+        <%= f.label :name %><br>
+        <%= f.text_field :name %>
+      </div>  
+
+      <div>
+        <%= f.label :email %><br>
+        <%= f.text_field :email %>
+      </div>
+
+      <div>
+        <%= f.label :Phone_number %><br>
+        <%= f.telephone_field :contact_num %>
+      </div>  
+      
+      <div>
+        <%= f.label :address %><br>
+        <%= f.text_field :address %>
+      </div>  
+
+      <div>
+        <%= f.label :city %><br>
+        <%= f.text_field :city %>
+      </div>  
+
+      <div>
+        <%= f.label :skills %><br>
+        <%= f.text_area :skills %>
+      </div>  
+
+      <div>
+        <%= f.label :Experience %><br>
+        <%= f.text_field :experience%>
+      </div>  
+
+      <div>
+        <%= f.label :Resume %><br>
+        <%= f.file_field :attachment %>
+      </div>  
+
+      <div><br>
+        <%= f.submit "Save", class: "btn btn-primary" %>
+      </div>
+   <% end %>
+</div>
+
+
+
+
+
