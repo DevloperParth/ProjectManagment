@@ -1,4 +1,9 @@
 class JobDetailsController < ApplicationController
+
+  #before_action :load_and_authorize_resource
+  before_action :authenticate_user!, :except => [:index]
+  #load_and_authorize_resource
+
   def index
     @job_details = JobDetail.all
   end    
@@ -8,12 +13,15 @@ class JobDetailsController < ApplicationController
   end
   
   def new
+    @employee = Employee.find(params[:employee_id])
     @employer = Employer.find(params[:employer_id])
     @job_detail = JobDetail.new
   end
 
+
   def create
     @employer = Employer.find(params[:employer_id])
+    #@employee = Employee.find(params[:employee_id])
     @job_detail = @employer.job_details.new(job_params)
     if @job_detail.save!
       redirect_to @job_detail
@@ -37,9 +45,9 @@ class JobDetailsController < ApplicationController
   end
 
   def destroy
+    #authorize @job_detail
     @job_detail = JobDetail.find(params[:id])
     @job_detail.destroy
-
 
     redirect_to root_path, status: :see_other
   end

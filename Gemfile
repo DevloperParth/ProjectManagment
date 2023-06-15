@@ -16,8 +16,12 @@ gem 'devise'
 
 gem 'byebug'
 
+gem 'cancan'
+
 gem  'carrierwave'
 gem  'bootstrap-sass'
+
+gem 'pundit'
 
 gem 'rolify'
 

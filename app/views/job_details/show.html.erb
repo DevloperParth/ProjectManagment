@@ -8,10 +8,15 @@
 
 <p><%= @job_detail.salary %></p>
 
+
 <ul>
+<%if current_user.employer?%>
   <li><%= link_to "Edit", edit_job_detail_path(@job_detail) %></li>
   <li><%= link_to "Destroy", job_detail_path(@job_detail), data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
                   } %></li>
+<%else%>  
+  <%= link_to "Apply for job", new_employee_path %>             
+<%end%>
 </ul>

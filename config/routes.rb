@@ -10,8 +10,9 @@ Rails.application.routes.draw do
     resources :admin
   end
   
-  namespace :employee do
-    resources :job_details
+  get '/job_details', to: 'job_details#index'
+  resources :employee do
+    resources :job_details, only: [:index]
   end
 
   resources :employer do
