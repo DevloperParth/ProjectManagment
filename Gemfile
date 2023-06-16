@@ -20,6 +20,10 @@ gem 'cancan'
 
 gem  'carrierwave'
 gem  'bootstrap-sass'
+gem 'haml'
+gem 'sassc-rails'
+
+gem 'jquery-rails'
 
 gem 'pundit'
 

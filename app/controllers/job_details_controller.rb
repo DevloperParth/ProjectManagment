@@ -13,7 +13,6 @@ class JobDetailsController < ApplicationController
   end
   
   def new
-    @employee = Employee.find(params[:employee_id])
     @employer = Employer.find(params[:employer_id])
     @job_detail = JobDetail.new
   end
@@ -21,7 +20,6 @@ class JobDetailsController < ApplicationController
 
   def create
     @employer = Employer.find(params[:employer_id])
-    #@employee = Employee.find(params[:employee_id])
     @job_detail = @employer.job_details.new(job_params)
     if @job_detail.save!
       redirect_to @job_detail
@@ -55,7 +53,7 @@ class JobDetailsController < ApplicationController
   private
     def job_params
       params.require(:job_detail).permit(:employer_id, :Job_title, :Job_summary,
-      :Qualification_skills, :Experience, :salary)
+      :Qualification_skills, :Experience, :salary, :job_url, :category_id)
     end
 
 

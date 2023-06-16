@@ -1,4 +1,9 @@
 <%= form_with model: [@employer, @job_detail] do |form| %>
+
+  <div>
+    <%=form.collection_select :category_id, Category.all, :id, :name, {prompt: "Choose a category"}%><br>
+  </div>
+
   <div>
     <%= form.label :Job_title %><br>
     <%= form.text_field :Job_title %>
@@ -24,6 +29,12 @@
     <%= form.text_area :salary %>
   </div>
 
+  <div>
+    <%= form.label :Link_to_job %><br>
+    <%= form.text_field :job_url %>
+  </div>
+
+  
   <div>
     <%= form.submit %>
   </div>
