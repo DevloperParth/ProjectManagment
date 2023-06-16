@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
    
-  root "users#index"
+  root "users#welcome"
 
   devise_for :users
   
-  resources  :job_details, :users, :employers, :employees
+  resources  :job_details, :users, :employers, :employees, :applicants
 
   namespace :admin do
     resources :admin
   end
   
-  get '/job_details', to: 'job_details#index'
+  
   resources :employee do
     resources :job_details, only: [:index]
   end
@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   resources :employer do
     resources :job_details
   end  
-  #root "users#index"
+
+  # resources :applicants do
+  #   resources :job_details
+  # end  
   
 end

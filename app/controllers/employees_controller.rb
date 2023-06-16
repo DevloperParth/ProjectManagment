@@ -24,7 +24,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(employee_params)
 
     if @employee.save
-      redirect_to @employee
+      redirect_to controller: :applicants, action: :index
     else
       render :new, status: :unprocessable_entity
     end

@@ -14,23 +14,36 @@
   <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">JOBsADDA</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="navbar-brand" href="#">JOBsADDA</div>
+
+    <ul class="nav navbar-nav">
+      <button class="navbar-toggler hidden-lg-up float-xs-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+
+      <li class="nav-item">
+          <%= link_to "Home", employers_path , class:"nav-link"%>
         </li>
+        
         <li class="nav-item">
+          <%= link_to "All Jobs", job_details_path , class:"nav-link"%>
+        </li>
+        <% Category.all.each do |category| %>
+          <li>
+            <%= link_to category.name, job_details_path(category: category.name), class:"nav-link" %>
+          </li>
+        <% end %>
+
+        <div class='sign'>
+        <li class="nav-item d-none d-sm-inline-block text-right">
         <%= link_to "Sign Out", destroy_user_session_path, class:"nav-link",data: { "turbo-method": :delete } %>
         </li>
         <li class="nav-item">
         <%= link_to "Sign IN", new_user_session_path, class:"nav-link" %>
         </li>
-        </li>
-        
+        </div>
       </ul>
       
     </div>

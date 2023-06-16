@@ -1,4 +1,4 @@
-<h1>Welcome To Portal</h1>
+<h1>Welcome To JOBSADDA</h1>
 
 <% if current_user %>
     <p> Hello <%= current_user.email %>!</p>
@@ -14,12 +14,16 @@
 
 
 <% else %>
-    <h3> Your are not Signed_in. You have to Signed_in first or have to Login first.</h3> 
-    <%= link_to "Sign up",new_user_registration_path %> 
-    <br /> 
-    <%= link_to "Login", new_user_session_path %>
-    <br /> 
-    
+    <h3> Your are not Signed_in. You have to Sign_up first or have to Login first.</h3> 
+    <button class="btn btn-default">
+      <%= link_to "Sign up",new_user_registration_path %>
+    </button>   
+
+    <br/> 
+    <button class="btn btn-default">
+      <%= link_to "Login", new_user_session_path %>
+    </button>  
+    <br/> 
 <% end %>
 
 

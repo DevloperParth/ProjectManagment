@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_15_161015) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_16_054708) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "applicants", force: :cascade do |t|
+    t.bigint "job_details_id"
+    t.bigint "employees_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employees_id"], name: "index_applicants_on_employees_id"
+    t.index ["job_details_id"], name: "index_applicants_on_job_details_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -50,8 +59,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_161015) do
     t.integer "salary"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "Applicants"
-    t.integer "ApplicationCount"
     t.bigint "employee_id"
     t.string "job_url"
     t.integer "category_id"

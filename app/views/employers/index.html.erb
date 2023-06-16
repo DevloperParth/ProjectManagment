@@ -1,10 +1,15 @@
-<h1>List Of Employers</h1>
-<ul>
-  <% @employers.each do |emp| %>
-    <li>
-    <%= link_to emp.name, emp %>
-    </li>
-  <% end %>
-</ul>
+<h1>List Of Companies</h1>
 
-<%= link_to "New Employer", new_employer_path %>
+<div id="companies">
+  <% @employers.each do |emp| %>
+    <div class="job">
+      <h2>
+        <%= link_to emp.name, emp %>
+      </h2>
+    </div>
+  <% end %>
+  <button class="btn btn-default">
+      <%= link_to "New Company", new_employer_path %>
+    </button>
+</div>
+

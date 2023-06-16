@@ -5,7 +5,13 @@ class JobDetailsController < ApplicationController
   #load_and_authorize_resource
 
   def index
-    @job_details = JobDetail.all
+    if params[:category].blank?
+			@job_details = JobDetail.all.order("created_at DESC")
+		else
+			@category_id = Category.find_by(name: params[:category]).id
+			@job_details = JobDetail.where(category_id: @category_id).order("created_at DESC")
+		end
+    #@job_details = JobDetail.all
   end    
   
   def show
@@ -13,6 +19,7 @@ class JobDetailsController < ApplicationController
   end
   
   def new
+   # @employee = Employee.find(params[:employee_id])
     @employer = Employer.find(params[:employer_id])
     @job_detail = JobDetail.new
   end
@@ -20,6 +27,7 @@ class JobDetailsController < ApplicationController
 
   def create
     @employer = Employer.find(params[:employer_id])
+    #@employee = Employee.find(params[:employee_id])
     @job_detail = @employer.job_details.new(job_params)
     if @job_detail.save!
       redirect_to @job_detail
@@ -53,7 +61,7 @@ class JobDetailsController < ApplicationController
   private
     def job_params
       params.require(:job_detail).permit(:employer_id, :Job_title, :Job_summary,
-      :Qualification_skills, :Experience, :salary, :job_url, :category_id)
+      :Qualification_skills, :Experience, :salary, :category_id)
     end
 
 

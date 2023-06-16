@@ -16,3 +16,103 @@
 
  @import  "bootstrap-sprockets";
  @import "bootstrap";
+ .sign{
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+ }
+
+
+ * {
+	box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+  background: -webkit-linear-gradient(90deg, #1D976C 10%, #93F9B9 90%);
+  background:    -moz-linear-gradient(90deg, #1D976C 10%, #93F9B9 90%);
+  background:     -ms-linear-gradient(90deg, #1D976C 10%, #93F9B9 90%);
+  background:      -o-linear-gradient(90deg, #1D976C 10%, #93F9B9 90%);
+  background:         linear-gradient(90deg, #1D976C 10%, #93F9B9 90%);
+  font-family: 'Lato', sans-serif;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.navbar-default {
+	background-color: rgb(211, 132, 132);
+	border-radius: 0;
+	height: 80px;
+	padding: 15px 0;
+	border: none;
+}
+
+.navbar-brand {
+	text-transform: uppercase;
+	letter-spacing: -1px;
+	font-size: 3em;
+	font-weight: 300;
+	color: #1D976C !important;
+}
+
+#jobs {
+	.job {
+		padding: 1em 0;
+		border-bottom: 1px solid rgba(250,250,250, 0.5);
+		h2 {
+			font-size: 2.5em;
+			font-weight: 300;
+			margin-bottom: 0;
+			color: white;
+			a {
+				color: white;
+			}
+		}
+		p {
+			color: rgba(250,250,250, 0.5);
+		}
+	}
+}
+
+#links {
+	margin-top: 2em;
+}
+.emplist{
+   size: 200px;
+   text-decoration: none;
+   
+}
+
+
+#companies{
+	.companies{
+		padding: 1em 0;
+		border-bottom: 1px solid rgba(250,250,250, 0.5);
+		h2 {
+			font-size: 2.5em;
+			font-weight: 300;
+			margin-bottom: 0;
+			color: rgb(226, 214, 214);
+			a {
+				color: white;
+			}
+		}
+		p {
+			color: rgba(250,250,250, 0.5);
+		}
+	}
+}
