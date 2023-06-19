@@ -5,8 +5,12 @@ class JobDetailsController < ApplicationController
   #load_and_authorize_resource
 
   def index
-    if params[:category].blank?
-			@job_details = JobDetail.all.order("created_at DESC")
+    if params[:category].blank? && current_user.role == "employer"
+      @job_details = current_user.employer.job_details.order("created_at DESC")
+    
+    elsif params[:category].blank? && current_user.role == "employe"
+      @job_details = JobDetail.all.order("created_at DESC")
+
 		else
 			@category_id = Category.find_by(name: params[:category]).id
 			@job_details = JobDetail.where(category_id: @category_id).order("created_at DESC")
@@ -18,6 +22,10 @@ class JobDetailsController < ApplicationController
     @job_detail = JobDetail.find(params[:id])
   end
   
+  def show_all_jobs
+    @job_detail = Employer.find(params["employee_id"]).job_details
+  end
+
   def new
    # @employee = Employee.find(params[:employee_id])
     @employer = Employer.find(params[:employer_id])

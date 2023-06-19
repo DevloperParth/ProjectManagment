@@ -21,7 +21,7 @@
         <%= f.label :email %><br>
         <%= f.text_field :email %>
       </div>
-
+      <%= f.hidden_field :job_detail_id, value:@job_id %>
       <div>
         <%= f.label :Phone_number %><br>
         <%= f.telephone_field :contact_num %>

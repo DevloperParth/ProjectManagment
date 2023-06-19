@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_16_054708) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_18_134041) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "applicants", force: :cascade do |t|
-    t.bigint "job_details_id"
-    t.bigint "employees_id"
+    t.bigint "employee_id"
+    t.bigint "job_detail_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["employees_id"], name: "index_applicants_on_employees_id"
-    t.index ["job_details_id"], name: "index_applicants_on_job_details_id"
+    t.index ["employee_id"], name: "index_applicants_on_employee_id"
+    t.index ["job_detail_id"], name: "index_applicants_on_job_detail_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -41,13 +41,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_054708) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "job_detail_id"
+    t.bigint "user_id"
+    t.string "application_status"
     t.index ["job_detail_id"], name: "index_employees_on_job_detail_id"
+    t.index ["user_id"], name: "index_employees_on_user_id"
   end
 
   create_table "employers", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_employers_on_user_id"
   end
 
   create_table "job_details", force: :cascade do |t|
@@ -59,6 +64,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_054708) do
     t.integer "salary"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "Applicants"
+    t.integer "ApplicationCount"
     t.bigint "employee_id"
     t.string "job_url"
     t.integer "category_id"

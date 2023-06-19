@@ -1,15 +1,14 @@
-<h1>List Of Companies</h1>
+
 
 <div id="companies">
-  <% @employers.each do |emp| %>
-    <div class="job">
-      <h2>
-        <%= link_to emp.name, emp %>
-      </h2>
-    </div>
-  <% end %>
+  <h2>
+  <%= link_to @employer.name, @employer %>
+  </h2>
+  <%if @employer.present? %>
+  <%else%>
   <button class="btn btn-default">
       <%= link_to "New Company", new_employer_path %>
     </button>
+  <%end%>
 </div>
 

@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     elsif resource.role == "employe"
       employees_path
     elsif resource.role == "employer"
-      employers_url
+      employers_path
     else
     end
   end

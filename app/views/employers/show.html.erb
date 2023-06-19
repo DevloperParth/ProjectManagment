@@ -1,17 +1,18 @@
-<h1><%= @employer.name %></h1>
+<h1>HELLO <%=@employer.name %></h1>
 
-<h3>Jobs</h3>
-<ul>
+<h3>Jobs Posted By <%=@employer.name%></h3>
+
+<div id="jobs">
   <% @employer.job_details.each do |job| %>
-  <li><%= link_to job.Job_title, job_details_path(job) %></li>
+    <div class="job">
+      <h2>
+        <%= link_to job.Job_title, job_details_path(job) %></li>
+      </h2>  
+    </div>  
   <% end %>
-</ul><br>
+</div>
 
-<ul>
-  <li><%= link_to "Create New Job",new_job_detail_path(employer_id: @employer.id) %></li>
-  <li><%= link_to "Edit", edit_employer_path(@employer) %></li>
-  <li><%= link_to "Destroy", employer_path(@employer), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %></li>
-</ul>
+
+<%= link_to "Create New Job",new_job_detail_path(employer_id: @employer.id), class: "btn btn-primary" %>
+
+

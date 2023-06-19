@@ -5,7 +5,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
+    
+
   enum role: [:admin, :employe, :employer]
+  
+  has_one :employer
+
+  has_many :employees
 
   after_initialize :set_default_role , :if => :new_record?
   

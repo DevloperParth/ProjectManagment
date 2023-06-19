@@ -1,9 +1,8 @@
 class EmployersController < ApplicationController
   
   def index 
-    @employers = Employer.all
+    @employer = current_user.employer
   end
-  
   
   def show
     @employer = Employer.find(params[:id])
@@ -15,6 +14,7 @@ class EmployersController < ApplicationController
 
   def create
     @employer = Employer.create(employers_params)
+    @employer[:user_id]=current_user.id
     if @employer.save
       redirect_to @employer
     else

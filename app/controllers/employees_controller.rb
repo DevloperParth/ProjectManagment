@@ -11,7 +11,9 @@ class EmployeesController < ApplicationController
 
   
   def new
+    debugger
     @employee = Employee.new
+    @job_id = params[:job_id]
   end
 
   
@@ -21,8 +23,8 @@ class EmployeesController < ApplicationController
 
  
   def create
+    
     @employee = Employee.new(employee_params)
-
     if @employee.save
       redirect_to controller: :applicants, action: :index
     else
@@ -53,6 +55,6 @@ class EmployeesController < ApplicationController
     
   def employee_params
     params.require(:employee).permit(:name, :address, :city, :email, :contact_num, :skills,
-    :experience, :attachment)
+    :experience, :attachment, :job_detail_id)
   end
 end

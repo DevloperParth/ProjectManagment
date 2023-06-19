@@ -1,30 +1,42 @@
-<h1>Welcome To JOBSADDA</h1>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Portal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>FIND THE JOBS THAT FITS YOUR LIFESTYLE </h1>
+      <h3>Discover thousands of job opportunities across various industries.</h3>
+      <%= link_to "Get Started", new_user_registration_path, class: "btn btn-primary" %>
+    </div>
+  </section>
 
-<% if current_user %>
-    <p> Hello <%= current_user.email %>!</p>
-    <p> You are a <%= current_user.role %> </p>
-    <% if current_user.admin?%>
-        <%= User.count %>
-    <%end%>    
-    <p>
-        You have successfully authenticated with account.
-    </p>
+  <section id="features" class="features">
+    <div class="container">
+      <h2>Key Features</h2>
+      <div class="feature">
+        <i class="fa fa-search"></i>
+        <h3>Advanced Job Search</h3>
+        <p>Effortlessly find the perfect job with our advanced search filters.</p>
+      </div>
+      <div class="feature">
+        <i class="fa fa-briefcase"></i>
+        <h3>Job Postings</h3>
+        <p>Employers can post job openings and reach qualified candidates.</p>
+      </div>
+      <div class="feature">
+        <i class="fa fa-users"></i>
+        <h3>User Profiles</h3>
+        <p>Create your professional profile to showcase your skills and experience.</p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
 
-    <%= button_to "logout", destroy_user_session_path, method: :delete  %>
-
-
-<% else %>
-    <h3> Your are not Signed_in. You have to Sign_up first or have to Login first.</h3> 
-    <button class="btn btn-default">
-      <%= link_to "Sign up",new_user_registration_path %>
-    </button>   
-
-    <br/> 
-    <button class="btn btn-default">
-      <%= link_to "Login", new_user_session_path %>
-    </button>  
-    <br/> 
-<% end %>
 
 
 

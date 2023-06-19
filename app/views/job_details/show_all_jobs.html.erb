@@ -1,0 +1,9 @@
+<div id="jobs">
+  <% @job_detail.each do |job| %>
+    <div class="job">
+      <h2>
+        <%= link_to job.Job_title, job_details_path(job) %></li>
+      </h2>  
+    </div>  
+  <% end %>
+</div>

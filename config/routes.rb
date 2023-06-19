@@ -12,10 +12,13 @@ Rails.application.routes.draw do
   
   
   resources :employee do
+    get 'show_all_jobs', to: 'job_details#show_all_jobs'
     resources :job_details, only: [:index]
   end
 
+
   resources :employer do
+    get 'company_all_jobs', to: 'employers#company_all_jobs'
     resources :job_details
   end  
 
