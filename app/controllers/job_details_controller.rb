@@ -22,7 +22,8 @@ class JobDetailsController < ApplicationController
 
   
   def new
-    @employer = Employer.find(params[:employer_id])
+    # @employer = Employer.find(params[:employer_id])
+    @employer = current_user.employer
     @job_detail = JobDetail.new
   end
 

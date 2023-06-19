@@ -22,7 +22,6 @@ class EmployeesController < ApplicationController
 
  
   def create
-    
     @employee = Employee.new(employee_params)
     if @employee.save
       redirect_to controller: :applicants, action: :index

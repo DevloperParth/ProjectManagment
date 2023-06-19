@@ -70,6 +70,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_075513) do
     t.integer "salary"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "Applicants"
+    t.integer "ApplicationCount"
     t.bigint "employee_id"
     t.string "job_url"
     t.integer "category_id"

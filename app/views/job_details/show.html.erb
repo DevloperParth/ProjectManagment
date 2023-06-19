@@ -31,7 +31,7 @@
   <div id="links">
     <%= link_to "Edit", edit_job_detail_path(@job_detail), class: "btn btn-sm btn-default" %>
     <%= link_to "Delete", job_detail_path(@job_detail), 
-        data: { turbo_method: :delete,confirm: "Are you sure?" }, 
+        data: { turbo_method: :delete, confirm: "Are you sure?" }, 
         class: "btn btn-sm btn-default" %>
   </div>
 <%end%>  
@@ -63,4 +63,5 @@
    
 </table>
 
+<%= button_to "Destroy this employee", @employee, method: :delete %>
 
