@@ -11,7 +11,6 @@ class EmployeesController < ApplicationController
 
   
   def new
-    debugger
     @employee = Employee.new
     @job_id = params[:job_id]
   end

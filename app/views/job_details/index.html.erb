@@ -11,7 +11,7 @@
 </div>
 
 <%if current_user.employer?%>
-  <%= link_to "New Job", new_job_detail_path %>
+  <%= link_to "Create New Job",new_job_detail_path, class: "btn btn-primary" %>
 <%end%>
 
 <%= link_to "BACK", job_details_path, class: "btn btn-primary" %>

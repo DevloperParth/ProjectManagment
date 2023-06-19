@@ -1,14 +1,23 @@
 
-
 <div id="companies">
-  <h2>
-  <%= link_to @employer.name, @employer %>
-  </h2>
+  <h1>
+  HELLO: <%= @current_user.email%>
+  </h1>
+  
   <%if @employer.present? %>
+    <button class="btn btn-default">
+      <%= link_to "Jobs", job_details_path %>
+    </button>
   <%else%>
+  <h2>
+    Looking To Hire Geeks? 
+  </h2>
+
+  <h3>
+    You Need To First Register Your Company.   
+  </h3>  
   <button class="btn btn-default">
-      <%= link_to "New Company", new_employer_path %>
+      <%= link_to "Register", new_employer_path %>
     </button>
   <%end%>
 </div>
-

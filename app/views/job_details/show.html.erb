@@ -3,20 +3,20 @@
   
     <h1>Number of applicants : <%= @job_detail.employees.count %></h1>
     <h2>
-      <%= @job_detail.Job_title %>
+      Job Title : <%= @job_detail.Job_title %>
     </h2>
-    <p>
-      <%= @job_detail.Job_summary %>
-    </p>
-    <p>
-      <%= @job_detail.Qualification_skills %>
-    </p>
-    <p>
-      <%= @job_detail.Experience %>
-    </p>
-    <p>
-      <%= @job_detail.salary %>
-    </p>
+    <h3>
+      Job Summary : <%= @job_detail.Job_summary %>
+    </h3>
+    <h3>
+      Qualificatin and Skills : <%= @job_detail.Qualification_skills %>
+    </h3>
+    <h3>
+      Experience : <%= @job_detail.Experience %>
+    </h3>
+    <h3>
+      Salary : <%= @job_detail.salary %>
+    </h3>
     
     <%if current_user.role == "employer" %>
     <%else%>

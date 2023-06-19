@@ -18,7 +18,6 @@ Rails.application.routes.draw do
 
 
   resources :employer do
-    get 'company_all_jobs', to: 'employers#company_all_jobs'
     resources :job_details
   end  
 

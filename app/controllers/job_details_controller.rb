@@ -1,6 +1,5 @@
 class JobDetailsController < ApplicationController
 
-  #before_action :load_and_authorize_resource
   before_action :authenticate_user!, :except => [:index]
   #load_and_authorize_resource
 
@@ -15,27 +14,22 @@ class JobDetailsController < ApplicationController
 			@category_id = Category.find_by(name: params[:category]).id
 			@job_details = JobDetail.where(category_id: @category_id).order("created_at DESC")
 		end
-    #@job_details = JobDetail.all
   end    
   
   def show
     @job_detail = JobDetail.find(params[:id])
   end
-  
-  def show_all_jobs
-    @job_detail = Employer.find(params["employee_id"]).job_details
-  end
 
+  
   def new
-   # @employee = Employee.find(params[:employee_id])
     @employer = Employer.find(params[:employer_id])
     @job_detail = JobDetail.new
   end
 
+  #@article = Article.new(params[:article].merge(:user_id => current_user.id))
 
   def create
     @employer = Employer.find(params[:employer_id])
-    #@employee = Employee.find(params[:employee_id])
     @job_detail = @employer.job_details.new(job_params)
     if @job_detail.save!
       redirect_to @job_detail
@@ -59,7 +53,6 @@ class JobDetailsController < ApplicationController
   end
 
   def destroy
-    #authorize @job_detail
     @job_detail = JobDetail.find(params[:id])
     @job_detail.destroy
 
@@ -71,7 +64,6 @@ class JobDetailsController < ApplicationController
       params.require(:job_detail).permit(:employer_id, :Job_title, :Job_summary,
       :Qualification_skills, :Experience, :salary, :category_id)
     end
-
 
 end
 

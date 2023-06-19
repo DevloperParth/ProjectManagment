@@ -6,7 +6,7 @@
   <% @employer.job_details.each do |job| %>
     <div class="job">
       <h2>
-        <%= link_to job.Job_title, job_details_path(job) %></li>
+        <%= link_to job.Job_title, job %></li>
       </h2>  
     </div>  
   <% end %>
@@ -14,5 +14,4 @@
 
 
 <%= link_to "Create New Job",new_job_detail_path(employer_id: @employer.id), class: "btn btn-primary" %>
-
 
