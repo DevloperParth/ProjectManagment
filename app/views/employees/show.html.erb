@@ -1,10 +1,45 @@
-<p style="color: green"><%= notice %></p>
+<p style="color: green"><%= notice %></p> 
 
-<%= render @employee %>
+<div id="jobs">
+  <div class="job">
+  
+    <h1>Name of Applicant: <%= @employee.name %></h1>
+    <h2>
+        Email of Applicant: <%= @employee.email %>
+    </h2>
+    <h3>
+       Address : <%= @employee.address %>
+    </h3>
+    <h3>
+      City : <%= @employee.city %>
+    </h3>
+    <h3>
+      Skills : <%= @employee.skills%>
+    </h3>
+    <h3>
+      Experience : <%= @employee.experience %>
+    </h3>
+    <h3>
+      Resume : <%= link_to "Download Resume", @employee.attachment_url %>
+    </h3>  
+    
+    <%if current_user.role == "employer" %>
+      <button class="btn btn-default">
+        <%= link_to "Reject Application", reject_job_detail_path(@job_detail), method: :patch %>
+      </button>
 
-<div>
-  <%= link_to "Edit this employee", edit_employee_path(@employee) %> |
-  <%= link_to "Back to employees", employees_path %>
+      <button class="btn btn-default">
+        <%= link_to "Accept Application", accept_job_detail_path(@job_detail), method: :patch %>
+      </button>
 
-  <%= button_to "Destroy this employee", @employee, method: :delete %>
+    <%else%>
+    <%= link_to "Edit this employee", edit_employee_path(@employee) %> 
+    <%= link_to "Back to employees", employees_path %>
+    <%= button_to "Destroy this employee", @employee, method: :delete %>
+    <%end%>
+      </div>
 </div>
+
+
+
+

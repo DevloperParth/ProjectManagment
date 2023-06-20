@@ -8,7 +8,7 @@ class JobDetailsController < ApplicationController
       @job_details = current_user.employer.job_details.order("created_at DESC")
     
     elsif params[:category].blank? && current_user.role == "employe"
-      @job_details = JobDetail.all.order("created_at DESC")
+      @job_details = JobDetail.all.includes(:employer).order("created_at DESC")
 
 		else
 			@category_id = Category.find_by(name: params[:category]).id
@@ -20,14 +20,30 @@ class JobDetailsController < ApplicationController
     @job_detail = JobDetail.find(params[:id])
   end
 
+  def accept
+    @job_detail = JobDetail.find(params[:id])
+    @job_detail.update_application_status('accepted')
+
+    JobDetailMailer.acceptance_email(@job_detail).deliver_now
+
+    # redirect_to @job_detail.employee, notice: 'Job application accepted.'
+  end
+
+  def reject
+    @job_detail = JobDetail.find(params[:id])
+    @job_detail.update_application_status('rejected')
+
+    JobDetailMailer.rejection_email(@job_detail.employees).deliver_now
+
+    # redirect_to @job_detail.employee, notice: 'Job application rejected.'
+  end
+
   
   def new
-    # @employer = Employer.find(params[:employer_id])
     @employer = current_user.employer
     @job_detail = JobDetail.new
   end
 
-  #@article = Article.new(params[:article].merge(:user_id => current_user.id))
 
   def create
     @employer = Employer.find(params[:employer_id])

@@ -35,7 +35,6 @@
         class: "btn btn-sm btn-default" %>
   </div>
 <%end%>  
-
 <table class = "table table-bordered table-striped">
    <thead>.
       <th>Name</th>
@@ -50,7 +49,7 @@
       <% @job_detail.employees.each do |emp| %>
          
          <tr>
-            <td><%= emp.name %></td>
+            <td><%= link_to emp.name, employee_path %></td>
             <td><%= emp.email %></td>
             <td><%= link_to "Download Resume", emp.attachment_url %></td>
             <td><%= emp.application_status %></td>

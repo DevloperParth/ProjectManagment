@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
    
+
   root "users#welcome"
 
   devise_for :users
@@ -11,11 +12,16 @@ Rails.application.routes.draw do
   end
   
   
-  resources :employee do
-    get 'show_all_jobs', to: 'job_details#show_all_jobs'
-    resources :job_details, only: [:index]
+  resources :job_details do
+    resources :employees
   end
 
+  resources :job_details do
+    member do
+      get 'accept'
+      get 'reject'
+    end  
+  end  
 
   resources :employer do
     resources :job_details

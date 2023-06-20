@@ -1,23 +1,25 @@
+<%if current_user.employer?%>
+  <div id="companies">
+    <h1>
+    HELLO: <%= @current_user.email%>
+    </h1>
+    
+    <%if @employer.present? %>
+      <button class="btn btn-default">
+        <%= link_to "Jobs", job_details_path %>
+      </button>
+    <%else%>
+    <h2>
+      Looking To Hire Geeks? 
+    </h2>
 
-<div id="companies">
-  <h1>
-  HELLO: <%= @current_user.email%>
-  </h1>
-  
-  <%if @employer.present? %>
+    <h3>
+      You Need To First Register Your Company.   
+    </h3>  
     <button class="btn btn-default">
-      <%= link_to "Jobs", job_details_path %>
-    </button>
-  <%else%>
-  <h2>
-    Looking To Hire Geeks? 
-  </h2>
-
-  <h3>
-    You Need To First Register Your Company.   
-  </h3>  
-  <button class="btn btn-default">
-      <%= link_to "Register", new_employer_path %>
-    </button>
-  <%end%>
-</div>
+        <%= link_to "Register", new_employer_path %>
+      </button>
+    <%end%>
+  </div>
+  
+<%end%>  

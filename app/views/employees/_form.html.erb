@@ -19,7 +19,7 @@
 
       <div>
         <%= f.label :email %><br>
-        <%= f.text_field :email %>
+        <%= f.email_field :email, required: true, placeholder: 'Enter your email' %>
       </div>
       <%= f.hidden_field :job_detail_id, value:@job_id %>
       <div>
@@ -53,11 +53,10 @@
       </div>  
 
       <div><br>
-        <%= f.submit "Save", class: "btn btn-primary" %>
+        <%= f.submit "Send OTP", class: "btn btn-primary" %>
       </div>
    <% end %>
 </div>
-
 
 
 

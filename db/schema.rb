@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_19_075513) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_20_123551) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,6 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_075513) do
     t.bigint "job_detail_id"
     t.bigint "user_id"
     t.string "application_status"
+    t.string "otp"
     t.index ["job_detail_id"], name: "index_employees_on_job_detail_id"
     t.index ["user_id"], name: "index_employees_on_user_id"
   end
@@ -70,8 +71,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_075513) do
     t.integer "salary"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "Applicants"
-    t.integer "ApplicationCount"
     t.bigint "employee_id"
     t.string "job_url"
     t.integer "category_id"

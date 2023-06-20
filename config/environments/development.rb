@@ -26,6 +26,21 @@ Rails.application.configure do
   if Rails.root.join("tmp/caching-dev.txt").exist?
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
+    config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {:address => "localhost", :port => 1025}
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address:'smtp.gmail.com',
+  port:  587,
+  domain: 'gmail.com',
+  user_name:  'kuldeeplovanshi777@gmail.com',
+  password: 'dswvlceeryfdpmdi',
+  authentication:  'plain',
+# enable_starttls_auto: true
+  }
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {

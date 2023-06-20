@@ -7,14 +7,26 @@ class EmployeesController < ApplicationController
 
   def show
     @employee = Employee.find(params[:id])
+    @job_detail = @employee.job_detail
   end
 
-  
   def new
     @employee = Employee.new
     @job_id = params[:job_id]
   end
 
+  def confirm_application
+    @employee = Employee.new(employee_params)
+
+    if @employee.valid?
+      @employee.generate_otp # Generate OTP
+      @employee.send_otp_email # Send OTP email
+
+      redirect_to job_details_path, notice: 'OTP sent to your email for confirmation'
+    else
+      render :index
+    end
+  end
   
   def edit
     @employee = Employee.find(params[:id])

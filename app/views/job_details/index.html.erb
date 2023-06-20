@@ -4,11 +4,13 @@
   <% @job_details.each do |job| %>
     <div class="job">
       <h2>
-        <%= link_to job.Job_title, job %>
+        <%= link_to job.Job_title, job %><br>
+        <h4>Posted By: <%=link_to job.employer.name, employers_path %></h4>
       </h2>
     </div>
   <% end %>
 </div>
+
 
 <%if current_user.employer?%>
   <%= link_to "Create New Job",new_job_detail_path, class: "btn btn-primary" %>
