@@ -18,24 +18,31 @@ class JobDetailsController < ApplicationController
   
   def show
     @job_detail = JobDetail.find(params[:id])
+    @applicant_count = @job_detail.applicant_count
   end
 
   def accept
     @job_detail = JobDetail.find(params[:id])
-    @job_detail.update_application_status('accepted')
-
-    JobDetailMailer.acceptance_email(@job_detail).deliver_now
-
-    # redirect_to @job_detail.employee, notice: 'Job application accepted.'
+  
+    if @job_detail.employee.present?
+      @employee = @job_detail.employee
+      @employee.update_application_status('accepted')
+      redirect_to @employee, notice: 'Job application rejected.'
+    else
+      redirect_to job_detail_path, alert: 'Employe Not Found'
+    end    
   end
 
   def reject
     @job_detail = JobDetail.find(params[:id])
-    @job_detail.update_application_status('rejected')
-
-    JobDetailMailer.rejection_email(@job_detail.employees).deliver_now
-
-    # redirect_to @job_detail.employee, notice: 'Job application rejected.'
+  
+    if @job_detail.employee.present?
+      @employee = @job_detail.employee
+      @employee.update_application_status('rejected')
+      redirect_to @employee, notice: 'Job application rejected.'
+    else
+      redirect_to job_detail_path, alert: 'Employe Not Found'
+    end    
   end
 
   
@@ -47,6 +54,7 @@ class JobDetailsController < ApplicationController
 
   def create
     @employer = Employer.find(params[:employer_id])
+    #@job_detail.employee_id = user.employee.id
     @job_detail = @employer.job_details.new(job_params)
     if @job_detail.save!
       redirect_to @job_detail
@@ -79,7 +87,7 @@ class JobDetailsController < ApplicationController
   private
     def job_params
       params.require(:job_detail).permit(:employer_id, :Job_title, :Job_summary,
-      :Qualification_skills, :Experience, :salary, :category_id)
+      :Qualification_skills, :Experience, :salary, :category_id ,:employee_id)
     end
 
 end

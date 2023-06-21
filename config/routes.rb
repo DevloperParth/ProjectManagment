@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   
   
   resources :job_details do
+    get '/job_details/:id', to: 'job_details#show'
     resources :employees
   end
 

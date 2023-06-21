@@ -1,66 +1,70 @@
 <div id="jobs">
   <div class="job">
-  
-    <h1>Number of applicants : <%= @job_detail.employees.count %></h1>
-    <h2>
-      Job Title : <%= @job_detail.Job_title %>
-    </h2>
-    <h3>
-      Job Summary : <%= @job_detail.Job_summary %>
-    </h3>
-    <h3>
-      Qualificatin and Skills : <%= @job_detail.Qualification_skills %>
-    </h3>
-    <h3>
-      Experience : <%= @job_detail.Experience %>
-    </h3>
-    <h3>
-      Salary : <%= @job_detail.salary %>
-    </h3>
-    
-    <%if current_user.role == "employer" %>
-    <%else%>
-      <button class="btn btn-default">
-      <%= link_to "Apply For This Job", new_employee_path(job_id:@job_detail) %>
-      </button>
+
+    <%if current_user.employer?%>
+      <h1> <%= @job_detail.Job_title%> </h1>
+      <h1>Number of Application : <%= @applicant_count %></h1>
+    <%else%>  
+      <h2>
+        Job Title : <%= @job_detail.Job_title %>
+      </h2>
+      <h3>
+        Job Summary : <%= @job_detail.Job_summary %>
+      </h3>
+      <h3>
+        Qualificatin and Skills : <%= @job_detail.Qualification_skills %>
+      </h3>
+      <h3>
+        Experience : <%= @job_detail.Experience %>
+      </h3>
+      <h3>
+        Salary : <%= @job_detail.salary %>
+      </h3>
+      
+      
+        <button class="btn btn-default">
+        <%= link_to "Apply For This Job", new_employee_path(job_id:@job_detail) %>
+        </button>
     <%end%>
-      </div>
+  </div>   
 </div>
 
 <%if current_user.employer?%>
   <div id="links">
-    <%= link_to "Edit", edit_job_detail_path(@job_detail), class: "btn btn-sm btn-default" %>
-    <%= link_to "Delete", job_detail_path(@job_detail), 
+    <%= link_to "Edit Job Position", edit_job_detail_path(@job_detail), class: "btn btn-sm btn-default" %>
+    <%= link_to "Delete Job Position", job_detail_path(@job_detail), 
         data: { turbo_method: :delete, confirm: "Are you sure?" }, 
         class: "btn btn-sm btn-default" %>
   </div>
 <%end%>  
-<table class = "table table-bordered table-striped">
-   <thead>.
-      <th>Name</th>
-         <th>Email</th>
-         <th>Download</th>
-         <th>Status</th>
-         <th>Action</th>
-      </tr>
-   </thead>
-   
-   <tbody>
-      <% @job_detail.employees.each do |emp| %>
-         
-         <tr>
-            <td><%= link_to emp.name, employee_path %></td>
-            <td><%= emp.email %></td>
-            <td><%= link_to "Download Resume", emp.attachment_url %></td>
-            <td><%= emp.application_status %></td>
-            <td><%= link_to "Accept", emp.attachment_url %>&nbsp;<%= link_to "Reject", emp.attachment_url %></td>
-         </tr>
-      
-         
-      <% end %>
-   </tbody>
-   
-</table>
 
-<%= button_to "Destroy this employee", @employee, method: :delete %>
+<%if current_user.employer?%>
+  <table class = "table table-bordered table-striped">
+    <thead>.
+        <th>Name</th>
+          <th>Email</th>
+          <th>Download</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <% @job_detail.employee_job_details.each do |emp| %>
+          
+          <tr>
+              <td><%= link_to emp.name, employee_path %></td>
+              <td><%= emp.email %></td>
+              <td><%= link_to "Download Resume", emp.attachment_url %></td>
+              <td><%= emp.application_status %></td>
+              <td><%= link_to "Accept", emp.attachment_url %>&nbsp;<%= link_to "Reject", emp.attachment_url %></td>
+          </tr>
+        
+          
+        <% end %>
+    </tbody>
+    
+  </table>
+<%end%>  
+
 

@@ -10,23 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_20_123551) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_21_132727) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "applicants", force: :cascade do |t|
-    t.bigint "employee_id"
-    t.bigint "job_detail_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["employee_id"], name: "index_applicants_on_employee_id"
-    t.index ["job_detail_id"], name: "index_applicants_on_job_detail_id"
-  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "employee_job_details", force: :cascade do |t|
+    t.bigint "employee_id", null: false
+    t.bigint "job_detail_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_employee_job_details_on_employee_id"
+    t.index ["job_detail_id"], name: "index_employee_job_details_on_job_detail_id"
   end
 
   create_table "employees", force: :cascade do |t|
@@ -40,10 +40,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_20_123551) do
     t.string "attachment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "job_detail_id"
     t.bigint "user_id"
     t.string "application_status"
     t.string "otp"
+    t.boolean "appliedforjob", default: false
+    t.integer "job_detail_id"
     t.index ["job_detail_id"], name: "index_employees_on_job_detail_id"
     t.index ["user_id"], name: "index_employees_on_user_id"
   end
@@ -71,9 +72,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_20_123551) do
     t.integer "salary"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "employee_id"
     t.string "job_url"
     t.integer "category_id"
+    t.integer "employee_id"
     t.index ["employee_id"], name: "index_job_details_on_employee_id"
     t.index ["employer_id"], name: "index_job_details_on_employer_id"
   end
@@ -113,4 +114,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_20_123551) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "employee_job_details", "employees"
+  add_foreign_key "employee_job_details", "job_details"
 end

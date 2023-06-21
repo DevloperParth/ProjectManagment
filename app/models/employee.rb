@@ -1,17 +1,16 @@
 class Employee < ApplicationRecord
   mount_uploader :attachment, AttachmentUploader 
-  validates :name, presence: true 
-  has_many :applicants
-  belongs_to :job_detail
-  has_many :job_details, :through => :applicants
+  validates :name, presence: true
 
+  has_many :employee_job_details
+  has_many :job_details, through: :employee_job_details, source: :job_detail
 
-  def generate_otp
-    self.otp = SecureRandom.hex(3) # Generate a 3-digit OTP
-    self.save
+  #validate :unique_application_per_job, on: :create
+
+  def unique_application_per_job
+    if job_detail.employees.exists?(user_id: user_id)
+      errors.add(:base, "You have already applied for this job.")
+    end
   end
 
-  def send_otp_email
-    JobDetailMailer.otp_email(self).deliver_now
-  end
 end
