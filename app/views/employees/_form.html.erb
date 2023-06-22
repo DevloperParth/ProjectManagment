@@ -12,6 +12,10 @@
 
 <div class = "well">
    <%= form_with model: @employee do |f| %>
+
+    <%= f.hidden_field :job_id, value: @job_detail.id %>
+    <%= f.hidden_field :job_id, value: @job_detail.id %>
+
       <div>
         <%= f.label :name %><br>
         <%= f.text_field :name %>

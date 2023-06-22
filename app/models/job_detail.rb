@@ -10,7 +10,4 @@ class JobDetail < ApplicationRecord
     employees.update(application_status: status)
   end
 
-  def applicant_count
-    employees.count
-  end
 end

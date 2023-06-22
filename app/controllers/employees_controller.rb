@@ -7,12 +7,13 @@ class EmployeesController < ApplicationController
 
   def show
     @employee = Employee.find(params[:id])
-    @job_detail = @employee.job_detail
+    @job_detail = JobDetail.find(params[:job_id])
   end
 
   def new
     @employee = Employee.new
-    @job_id = params[:job_id]
+    @job_id = params[:job_id] if params[:job_id].present?
+    @job_detail ||= JobDetail.new
   end
 
   def confirm_application
@@ -34,9 +35,16 @@ class EmployeesController < ApplicationController
 
  
   def create
+    puts params.inspect
     @employee = Employee.new(employee_params)
+    @job_detail = JobDetail.find(params[:employee][:job_id])
+    @employee.job_detail = @job_detail
     if @employee.save
-      redirect_to controller: :applicants, action: :index
+      @job_detail.update(employee_id: @employee.id)
+      # @job_detail.employee_id = @employee.id
+      # @job_detail.save
+      redirect_to @employee, notice: 'Job application submitted successfully.'
+      #controller: :applicants, action: :index
     else
       render :new, status: :unprocessable_entity
     end
@@ -65,6 +73,6 @@ class EmployeesController < ApplicationController
     
   def employee_params
     params.require(:employee).permit(:name, :address, :city, :email, :contact_num, :skills,
-    :experience, :attachment, :job_detail_id)
+    :experience, :attachment, :job_detail_id, :job_id)
   end
 end

@@ -50,7 +50,7 @@
     </thead>
     
     <tbody>
-        <% @job_detail.employee_job_details.each do |emp| %>
+        <% @applicants.each do  |emp| %>
           
           <tr>
               <td><%= link_to emp.name, employee_path %></td>

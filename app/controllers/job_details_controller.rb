@@ -18,7 +18,8 @@ class JobDetailsController < ApplicationController
   
   def show
     @job_detail = JobDetail.find(params[:id])
-    @applicant_count = @job_detail.applicant_count
+    @applicants = @job_detail.employees
+    @applicant_count = @applicants.count
   end
 
   def accept
@@ -43,6 +44,11 @@ class JobDetailsController < ApplicationController
     else
       redirect_to job_detail_path, alert: 'Employe Not Found'
     end    
+  end
+
+  def applicant_count
+    @job_detail = JobDetails.find(params[:id])
+    @job_detail.employees.count
   end
 
   

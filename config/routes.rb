@@ -19,10 +19,13 @@ Rails.application.routes.draw do
 
   resources :job_details do
     member do
+      get 'applicant_count'
       get 'accept'
       get 'reject'
     end  
   end  
+
+  
 
   resources :employer do
     resources :job_details
