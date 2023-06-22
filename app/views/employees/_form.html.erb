@@ -12,7 +12,9 @@
 
 <div class = "well">
    <%= form_with model: @employee do |f| %>
+    
       <div>
+      <%= f.hidden_field :employee_id, value:current_user.id %>
         <%= f.label :name %><br>
         <%= f.text_field :name %>
       </div>  
@@ -22,7 +24,6 @@
         <%= f.email_field :email, required: true, placeholder: 'Enter your email' %>
       </div>
       <%= f.hidden_field :job_detail_id, value:@job_id %>
-
       <div>
         <%= f.label :Phone_number %><br>
         <%= f.telephone_field :contact_num %>
@@ -41,11 +42,7 @@
       <div>
         <%= f.label :skills %><br>
         <%= f.text_area :skills %>
-      </div> 
-      <div>
-        <%= f.label :skills %><br>
-        <%= f.text_area :current_user %>
-      </div>   
+      </div>  
 
       <div>
         <%= f.label :Experience %><br>
@@ -56,12 +53,14 @@
         <%= f.label :Resume %><br>
         <%= f.file_field :attachment %>
       </div>  
-     
+
       <div><br>
-        <%= link_to "Apply for job", job_details_path(@job_detail),class: "btn btn-primary" %>
+        <%= f.submit "Send OTP", class: "btn btn-primary" %>
       </div>
-  <%end%> 
+   <% end %>
 </div>
+
+
 
 
 
