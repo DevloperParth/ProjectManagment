@@ -18,12 +18,21 @@ class JobDetailsController < ApplicationController
   
   def show
     @job_detail = JobDetail.find(params[:id])
-<<<<<<< HEAD
-    @applicants = @job_detail.employees
-    @applicant_count = @applicants.count
-=======
     #@applicant_count = @job_detail.applicant_count
->>>>>>> 8636fbeb95c9511442a7fcc0aba8705345155c95
+  end
+
+  def apply_for_job
+    @employee = current_user.employee
+    @job_detail = JobDetail.new(job_params)
+    @job_detail.employee = @employee
+
+    if @job_detail.save
+      # Successful save, additional processing or redirection
+      redirect_to @job_detail, notice: 'Job application submitted successfully.'
+    else
+      # Failed save, handle the error
+      render :new
+    end
   end
 
   
@@ -66,7 +75,6 @@ class JobDetailsController < ApplicationController
   def create
     @employer = Employer.find(params[:employer_id])
     @job_detail = @employer.job_details.new(job_params)
-    
   
     if @job_detail.save!
       redirect_to @job_detail
@@ -100,7 +108,7 @@ class JobDetailsController < ApplicationController
   private
     def job_params
       params.require(:job_detail).permit(:employer_id, :Job_title, :Job_summary,
-      :Qualification_skills, :Experience, :salary, :category_id ,employee_ids: [])
+      :Qualification_skills, :Experience, :salary, :category_id ,:employee_id)
     end
 
 end

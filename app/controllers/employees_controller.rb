@@ -12,27 +12,22 @@ class EmployeesController < ApplicationController
 
   def new
     @employee = Employee.new
-<<<<<<< HEAD
-    @job_id = params[:job_id] if params[:job_id].present?
-    @job_detail ||= JobDetail.new
-=======
  
     #@job_detail = JobDetail.find(params[:job_detail_id])
->>>>>>> 8636fbeb95c9511442a7fcc0aba8705345155c95
   end
 
-  def confirm_application
-    @employee = Employee.new(employee_params)
+  # def confirm_application
+  #   @employee = Employee.new(employee_params)
 
-    if @employee.valid?
-      @employee.generate_otp # Generate OTP
-      @employee.send_otp_email # Send OTP email
+  #   if @employee.valid?
+  #     @employee.generate_otp # Generate OTP
+  #     @employee.send_otp_email # Send OTP email
 
-      redirect_to job_details_path, notice: 'OTP sent to your email for confirmation'
-    else
-      render :index
-    end
-  end
+  #     redirect_to job_details_path, notice: 'OTP sent to your email for confirmation'
+  #   else
+  #     render :index
+  #   end
+  # end
   
   def edit
     @employee = Employee.find(params[:id])
@@ -40,20 +35,10 @@ class EmployeesController < ApplicationController
 
  
   def create
-    puts params.inspect
     @employee = Employee.new(employee_params)
-<<<<<<< HEAD
-    @job_detail = JobDetail.find(params[:employee][:job_id])
-    @employee.job_detail = @job_detail
-=======
     
->>>>>>> 8636fbeb95c9511442a7fcc0aba8705345155c95
     if @employee.save
-      @job_detail.update(employee_id: @employee.id)
-      # @job_detail.employee_id = @employee.id
-      # @job_detail.save
-      redirect_to @employee, notice: 'Job application submitted successfully.'
-      #controller: :applicants, action: :index
+      redirect_to apply_for_job_job_detail_path(@employee.id), notice: 'Profile created successfully.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -82,10 +67,6 @@ class EmployeesController < ApplicationController
     
   def employee_params
     params.require(:employee).permit(:name, :address, :city, :email, :contact_num, :skills,
-<<<<<<< HEAD
-    :experience, :attachment, :job_detail_id, :job_id)
-=======
-    :experience, :attachment, :job_detail_id,:employee_id)
->>>>>>> 8636fbeb95c9511442a7fcc0aba8705345155c95
+    :experience, :attachment, :job_detail_id)
   end
 end
