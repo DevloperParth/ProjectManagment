@@ -12,17 +12,14 @@ Rails.application.routes.draw do
   end
   
   
-  resources :job_details do
-    get '/job_details/:id', to: 'job_details#show'
-    resources :employees
-  end
+  # resources :job_detail do
+  #   resources :employees
+  # end
 
   resources :job_details do
-    member do
-      get 'accept'
-      get 'reject'
-    end  
-  end  
+    resources :job_applications, only: [:create], controller: 'job_applications'
+  end
+
 
   resources :employer do
     resources :job_details

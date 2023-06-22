@@ -12,7 +12,8 @@ class EmployeesController < ApplicationController
 
   def new
     @employee = Employee.new
-    @job_id = params[:job_id]
+ 
+    #@job_detail = JobDetail.find(params[:job_detail_id])
   end
 
   def confirm_application
@@ -35,6 +36,7 @@ class EmployeesController < ApplicationController
  
   def create
     @employee = Employee.new(employee_params)
+    
     if @employee.save
       redirect_to controller: :applicants, action: :index
     else
@@ -65,6 +67,6 @@ class EmployeesController < ApplicationController
     
   def employee_params
     params.require(:employee).permit(:name, :address, :city, :email, :contact_num, :skills,
-    :experience, :attachment, :job_detail_id)
+    :experience, :attachment, :job_detail_id,:employee_id)
   end
 end

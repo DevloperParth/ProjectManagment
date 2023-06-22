@@ -18,9 +18,10 @@ class JobDetailsController < ApplicationController
   
   def show
     @job_detail = JobDetail.find(params[:id])
-    @applicant_count = @job_detail.applicant_count
+    #@applicant_count = @job_detail.applicant_count
   end
 
+  
   def accept
     @job_detail = JobDetail.find(params[:id])
   
@@ -54,10 +55,12 @@ class JobDetailsController < ApplicationController
 
   def create
     @employer = Employer.find(params[:employer_id])
-    #@job_detail.employee_id = user.employee.id
     @job_detail = @employer.job_details.new(job_params)
+    
+  
     if @job_detail.save!
       redirect_to @job_detail
+
     else
       render :new, status: :unprocessable_entity
     end
@@ -87,8 +90,7 @@ class JobDetailsController < ApplicationController
   private
     def job_params
       params.require(:job_detail).permit(:employer_id, :Job_title, :Job_summary,
-      :Qualification_skills, :Experience, :salary, :category_id ,:employee_id)
+      :Qualification_skills, :Experience, :salary, :category_id ,employee_ids: [])
     end
 
 end
-
