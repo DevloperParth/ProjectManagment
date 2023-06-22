@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema[7.0].define(version: 2023_06_21_161045) do
+=======
+ActiveRecord::Schema[7.0].define(version: 2023_06_22_105312) do
+>>>>>>> 8636fbeb95c9511442a7fcc0aba8705345155c95
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,15 +22,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_21_161045) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "employee_job_details", force: :cascade do |t|
-    t.bigint "employee_id", null: false
-    t.bigint "job_detail_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["employee_id"], name: "index_employee_job_details_on_employee_id"
-    t.index ["job_detail_id"], name: "index_employee_job_details_on_job_detail_id"
   end
 
   create_table "employees", force: :cascade do |t|
@@ -61,6 +56,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_21_161045) do
     t.string "country"
     t.bigint "contact"
     t.index ["user_id"], name: "index_employers_on_user_id"
+  end
+
+  create_table "job_applications", force: :cascade do |t|
+    t.bigint "employee_id", null: false
+    t.bigint "job_detail_id", null: false
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_job_applications_on_employee_id"
+    t.index ["job_detail_id"], name: "index_job_applications_on_job_detail_id"
   end
 
   create_table "job_details", force: :cascade do |t|
@@ -116,6 +121,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_21_161045) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
-  add_foreign_key "employee_job_details", "employees"
-  add_foreign_key "employee_job_details", "job_details"
+  add_foreign_key "job_applications", "employees"
+  add_foreign_key "job_applications", "job_details"
 end

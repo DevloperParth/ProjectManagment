@@ -12,11 +12,15 @@ Rails.application.routes.draw do
   end
   
   
+  # resources :job_detail do
+  #   resources :employees
+  # end
+
   resources :job_details do
-    get '/job_details/:id', to: 'job_details#show'
-    resources :employees
+    resources :job_applications, only: [:create], controller: 'job_applications'
   end
 
+<<<<<<< HEAD
   resources :job_details do
     member do
       get 'applicant_count'
@@ -24,6 +28,8 @@ Rails.application.routes.draw do
       get 'reject'
     end  
   end  
+=======
+>>>>>>> 8636fbeb95c9511442a7fcc0aba8705345155c95
 
   
 

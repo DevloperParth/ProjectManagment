@@ -3,7 +3,7 @@
 
     <%if current_user.employer?%>
       <h1> <%= @job_detail.Job_title%> </h1>
-      <h1>Number of Application : <%= @applicant_count %></h1>
+      <h1>Number of Application : <%= @job_detail.employees.count %></h1>
     <%else%>  
       <h2>
         Job Title : <%= @job_detail.Job_title %>
@@ -50,10 +50,14 @@
     </thead>
     
     <tbody>
+<<<<<<< HEAD
         <% @applicants.each do  |emp| %>
+=======
+        <% @job_detail.employees.each do |emp| %>
+>>>>>>> 8636fbeb95c9511442a7fcc0aba8705345155c95
           
           <tr>
-              <td><%= link_to emp.name, employee_path %></td>
+              <td><%= link_to emp.name, employees_path %></td>
               <td><%= emp.email %></td>
               <td><%= link_to "Download Resume", emp.attachment_url %></td>
               <td><%= emp.application_status %></td>
