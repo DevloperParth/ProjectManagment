@@ -12,22 +12,7 @@ class EmployeesController < ApplicationController
 
   def new
     @employee = Employee.new
- 
-    #@job_detail = JobDetail.find(params[:job_detail_id])
   end
-
-  # def confirm_application
-  #   @employee = Employee.new(employee_params)
-
-  #   if @employee.valid?
-  #     @employee.generate_otp # Generate OTP
-  #     @employee.send_otp_email # Send OTP email
-
-  #     redirect_to job_details_path, notice: 'OTP sent to your email for confirmation'
-  #   else
-  #     render :index
-  #   end
-  # end
   
   def edit
     @employee = Employee.find(params[:id])
@@ -38,7 +23,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(employee_params)
     
     if @employee.save
-      redirect_to apply_for_job_job_detail_path(@employee.id), notice: 'Profile created successfully.'
+      redirect_to new_job_detail_path, notice: 'Applied Successfully .'
     else
       render :new, status: :unprocessable_entity
     end

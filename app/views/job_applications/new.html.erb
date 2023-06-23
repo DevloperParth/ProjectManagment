@@ -1,0 +1,9 @@
+<h1>Apply for <%= @job_detail.Job_title %></h1>
+<%= form_with(model: [@job_application,@job_application], url: job_detail_job_applications_path(@job_detail)) do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  
+  
+  
+  <%= form.submit 'Submit Application' %>
+<% end %>

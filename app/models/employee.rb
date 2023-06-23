@@ -2,8 +2,9 @@ class Employee < ApplicationRecord
   mount_uploader :attachment, AttachmentUploader 
   validates :name, presence: true
 
-  has_many :job_applications
-  has_many :job_details, through: :job_applications, source: :job_detail
+  belongs_to :user
+  has_many :applications
+  
 
   #validate :unique_application_per_job, on: :create
 
