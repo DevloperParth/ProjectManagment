@@ -17,17 +17,17 @@ Rails.application.routes.draw do
   # end
 
   resources :job_details do
-    resources :job_applications
+    resources :job_applications do
+      member do
+        get :accept
+        get :reject
+      end  
+    end  
   end
 
-  resources :job_details do
-    member do
-      get 'applicant_count'
-      get 'accept'
-      get 'reject'
-    end  
-  end  
+  
 
+  
   
 
   resources :employer do

@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Job Application Accepted</title>
+  </head>
+  <body>
+    <h1>Dear <%= @employee.name %>,</h1>
+
+    <p>Congratulations! We are pleased to inform you that your job application has been accepted. We believe you are a great fit for the position and look forward to having you on our team.</p>
+
+    <p>Please feel free to reach out to us if you have any questions or require any further information.</p>
+
+    <p>Best regards,</p><br>
+    <p><%= @job_application.job_detail.employer.name %> </p>
+  </body>
+</html>

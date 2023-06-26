@@ -21,35 +21,8 @@ class JobDetailsController < ApplicationController
     @job_applications = @job_detail.job_applications.includes(:employee)
   end
 
-
-
-  def accept
-    @job_detail = JobDetail.find(params[:id])
-  
-    if @job_detail.employee.present?
-      @employee = @job_detail.employee
-      @employee.update_application_status('accepted')
-      redirect_to @employee, notice: 'Job application rejected.'
-    else
-      redirect_to job_detail_path, alert: 'Employe Not Found'
-    end    
-  end
-
-  def reject
-    @job_detail = JobDetail.find(params[:id])
-  
-    if @job_detail.employee.present?
-      @employee = @job_detail.employee
-      @employee.update_application_status('rejected')
-      redirect_to @employee, notice: 'Job application rejected.'
-    else
-      redirect_to job_detail_path, alert: 'Employe Not Found'
-    end    
-  end
-
   def new
     @employer = Employer.find(params[:employer_id])
-    #@employer = current_user.employer
     @job_detail = JobDetail.new
   end
 
@@ -57,7 +30,6 @@ class JobDetailsController < ApplicationController
   def create
     @employer = Employer.find(params[:employer_id])
     @job_detail = @employer.job_details.new(job_params)
-    #@job_detail.employee_id = current_user.employee.id
     
     if @job_detail.save!
       redirect_to @job_detail

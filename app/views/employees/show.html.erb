@@ -25,11 +25,11 @@
     
     <%if current_user.role == "employer" %>
       <button class="btn btn-default">
-        <%= link_to "Reject Application", reject_job_detail_path(@job_detail), method: :patch %>
+        <%= link_to "Reject Application", reject_job_detail_job_application_path(@job_detail, @job_application), method: :patch %>
       </button>
 
       <button class="btn btn-default">
-        <%= link_to "Accept Application", accept_job_detail_path(@job_detail), method: :patch %>
+        <%= link_to "Accept Application", accept_job_detail_job_application_path(@job_detail, @job_application), method: :patch %>
       </button>
 
     <%else%>

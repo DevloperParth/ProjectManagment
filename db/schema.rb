@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_23_120234) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_26_072215) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,7 +19,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_23_120234) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
 
   create_table "employees", force: :cascade do |t|
     t.string "name"
@@ -56,13 +55,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_23_120234) do
   end
 
   create_table "job_applications", force: :cascade do |t|
-    t.bigint "employee_id", null: false
-    t.bigint "job_detail_id", null: false
-    t.string "status"
+    t.bigint "job_detail_id"
+    t.bigint "employee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.string "status"
     t.index ["employee_id"], name: "index_job_applications_on_employee_id"
+    t.index ["job_detail_id", "employee_id"], name: "index_job_applications_on_job_detail_id_and_employee_id", unique: true
     t.index ["job_detail_id"], name: "index_job_applications_on_job_detail_id"
   end
 
@@ -75,8 +75,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_23_120234) do
     t.integer "salary"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "Applicants"
-    t.integer "ApplicationCount"
     t.string "job_url"
     t.integer "category_id"
     t.integer "employee_id"
@@ -119,6 +117,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_23_120234) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
-  add_foreign_key "job_applications", "employees"
-  add_foreign_key "job_applications", "job_details"
 end

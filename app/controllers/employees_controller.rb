@@ -7,7 +7,8 @@ class EmployeesController < ApplicationController
 
   def show
     @employee = Employee.find(params[:id])
-    #@job_detail = JobDetail.find(params[:job_id])
+    @job_detail = JobDetail.find(@employee.job_detail_id)
+    @job_application = @job_detail.job_applications.find_by(employee_id: @employee.id)
   end
   
   def new

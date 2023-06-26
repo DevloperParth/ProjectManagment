@@ -9,9 +9,9 @@ class User < ApplicationRecord
 
   enum role: [:admin, :employee, :employer, :user]
   
-  has_one :employer
+  has_many :employers
 
-  has_one :employee
+  has_many :employees
 
   after_initialize :set_default_role , :if => :new_record?
   

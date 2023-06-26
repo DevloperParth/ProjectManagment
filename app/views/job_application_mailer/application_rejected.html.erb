@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Job Application Rejected</h1>
+    <p>Dear <%= @employee.name %>,</p>
+    <p>We regret to inform you that your job application for <%= @job_application.job_detail.Job_title %> has been rejected.</p>
+    <p>Thank you for your interest and time.</p>
+    <p>Sincerely,</p>
+    <p>The Hiring Team</p>
+    <p><%= @job_application.job_detail.employer.name %> </p>
+  </body>
+</html>
