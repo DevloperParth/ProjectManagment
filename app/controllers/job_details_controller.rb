@@ -7,7 +7,7 @@ class JobDetailsController < ApplicationController
     if params[:category].blank? && current_user.role == "employer"
       @job_details = current_user.employer.job_details.order("created_at DESC")
     
-    elsif params[:category].blank? && current_user.role == "employe"
+    elsif params[:category].blank? && current_user.role == "employee"
       @job_details = JobDetail.all.includes(:employer).order("created_at DESC")
 
 		else
@@ -18,7 +18,10 @@ class JobDetailsController < ApplicationController
   
   def show
     @job_detail = JobDetail.find(params[:id])
+    @job_applications = @job_detail.job_applications.includes(:employee)
   end
+
+
 
   def accept
     @job_detail = JobDetail.find(params[:id])
@@ -45,7 +48,8 @@ class JobDetailsController < ApplicationController
   end
 
   def new
-    @employer = current_user.employer
+    @employer = Employer.find(params[:employer_id])
+    #@employer = current_user.employer
     @job_detail = JobDetail.new
   end
 
@@ -53,6 +57,7 @@ class JobDetailsController < ApplicationController
   def create
     @employer = Employer.find(params[:employer_id])
     @job_detail = @employer.job_details.new(job_params)
+    #@job_detail.employee_id = current_user.employee.id
     
     if @job_detail.save!
       redirect_to @job_detail

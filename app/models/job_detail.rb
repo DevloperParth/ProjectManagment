@@ -2,10 +2,10 @@ class JobDetail < ApplicationRecord
   belongs_to :employer
   belongs_to :category
 
-  has_many :applications ,class_name: 'JobApplication'
+  has_many :job_applications
 
-  def update_application_status(status)
-    employees.update(application_status: status)
+  def applied_employee_count
+    job_applications.count
   end
 
 end

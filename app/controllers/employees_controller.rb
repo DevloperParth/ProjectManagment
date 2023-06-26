@@ -7,10 +7,11 @@ class EmployeesController < ApplicationController
 
   def show
     @employee = Employee.find(params[:id])
-    @job_detail = JobDetail.find(params[:job_id])
+    #@job_detail = JobDetail.find(params[:job_id])
   end
-
+  
   def new
+    @job_detail_id = params[:job_detail_id]
     @employee = Employee.new
   end
   
@@ -20,10 +21,11 @@ class EmployeesController < ApplicationController
 
  
   def create
-    @employee = Employee.new(employee_params)
-    
+    @employee = current_user.employees.build(employee_params)
+
     if @employee.save
-      redirect_to new_job_detail_path, notice: 'Applied Successfully .'
+      redirect_to new_job_detail_job_application_url(job_detail_id:params[:employee][:job_detail_id]), notice: 'Employee profile created successfully.'
+
     else
       render :new, status: :unprocessable_entity
     end

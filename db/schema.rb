@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_23_120234) do
     t.datetime "updated_at", null: false
   end
 
+
   create_table "employees", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -55,8 +56,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_23_120234) do
   end
 
   create_table "job_applications", force: :cascade do |t|
-    t.bigint "job_detail_id"
-    t.bigint "employee_id"
+    t.bigint "employee_id", null: false
+    t.bigint "job_detail_id", null: false
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
@@ -73,6 +75,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_23_120234) do
     t.integer "salary"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "Applicants"
+    t.integer "ApplicationCount"
     t.string "job_url"
     t.integer "category_id"
     t.integer "employee_id"
@@ -115,4 +119,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_23_120234) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "job_applications", "employees"
+  add_foreign_key "job_applications", "job_details"
 end

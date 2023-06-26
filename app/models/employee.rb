@@ -3,8 +3,9 @@ class Employee < ApplicationRecord
   validates :name, presence: true
 
   belongs_to :user
-  has_many :applications
-  
+
+  has_many :job_applications
+    
 
   #validate :unique_application_per_job, on: :create
 
