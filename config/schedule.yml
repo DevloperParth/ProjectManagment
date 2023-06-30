@@ -1,0 +1,7 @@
+user_mailer_job:
+  cron: '*/5 * * * *' # Run every day at midnight
+  class: SendWelcomeEmailJob
+  queue: default
+  args:
+    - user_id
+  description: "Send welcome email to new users"

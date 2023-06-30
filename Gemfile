@@ -18,6 +18,11 @@ gem 'byebug'
 
 gem 'cancan'
 
+gem 'sidekiq'
+
+gem 'sidekiq-cron'
+gem 'sidekiq-scheduler'
+
 gem  'carrierwave'
 gem  'bootstrap-sass'
 gem 'haml'
@@ -26,6 +31,19 @@ gem 'sassc-rails'
 gem 'jquery-rails'
 
 gem 'pundit'
+
+
+# gems for testing
+gem 'rspec-rails'
+gem 'factory_bot_rails'
+gem 'simplecov', require: false, group: :test
+gem 'faker'
+
+gem 'shoulda-matchers', '~> 4.0'
+
+group :test do
+  gem 'database_cleaner-active_record'
+end
 
 gem 'rolify'
 

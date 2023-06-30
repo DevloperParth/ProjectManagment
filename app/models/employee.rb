@@ -1,10 +1,13 @@
 class Employee < ApplicationRecord
   mount_uploader :attachment, AttachmentUploader 
-  validates :name, presence: true
-
   belongs_to :user
 
   has_many :job_applications
-    
+
+  validates_presence_of :name, :city, :address, :contact_num, :attachment
+  validates :email, presence: true, uniqueness: true
 end
+
+
+
 

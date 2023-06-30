@@ -1,8 +1,8 @@
 class JobApplicationsController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
-  before_action :set_job_detail
-  before_action :set_job_application
+  before_action :set_job_detail, only: [:accept, :reject]
+  before_action :set_job_application, only: [:accept, :reject]
 
   def new
     @job_detail = JobDetail.find(params[:job_detail_id])

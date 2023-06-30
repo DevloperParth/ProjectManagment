@@ -5,7 +5,7 @@ class JobDetailsController < ApplicationController
 
   def index
     if params[:category].blank? && current_user.role == "employer"
-      @job_details = current_user.employer.job_details.order("created_at DESC")
+      @job_details = current_user.employers.first.job_details.order("created_at DESC")
     
     elsif params[:category].blank? && current_user.role == "employee"
       @job_details = JobDetail.all.includes(:employer).order("created_at DESC")

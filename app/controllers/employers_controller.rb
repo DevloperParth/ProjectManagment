@@ -1,7 +1,7 @@
 class EmployersController < ApplicationController
   
   def index 
-    @employer = current_user.employer
+    @employers = current_user.employers 
   end
   
   def show
@@ -14,8 +14,9 @@ class EmployersController < ApplicationController
 
   def create
     @employer = Employer.create(employers_params)
-    @employer[:user_id]=current_user.id
+    @employer.user_id = current_user.id
     if @employer.save
+      SendWelcomeEmailJob.perform_later(@employer.user)
       redirect_to @employer
     else
       render :new, status: :unprocessable_entity
@@ -45,7 +46,8 @@ class EmployersController < ApplicationController
 
   private
     def employers_params
-      params.require(:employer).permit(:name)
+      params.require(:employer).permit(:name, :address, :email, :city, :state, :country,
+      :contact)
     end
 
 end

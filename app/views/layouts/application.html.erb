@@ -37,12 +37,16 @@
         <% end %>
 
         <div class='sign'>
-        <li class="nav-item d-none d-sm-inline-block text-right">
-        <%= link_to "Sign Out", destroy_user_session_path, class:"nav-link",data: { "turbo-method": :delete } %>
-        </li>
-        <li class="nav-item">
-        <%= link_to "Sign IN", new_user_session_path, class:"nav-link" %>
-        </li>
+        <% if current_user.present? %>
+
+          <li class="nav-item d-none d-sm-inline-block text-right">
+            <%= link_to "Sign Out", destroy_user_session_path, class:"nav-link",data: { "turbo-method": :delete } %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Sign IN", new_user_session_path, class:"nav-link" %>
+          </li>
+        <% end %>
         </div>
       </ul>
       

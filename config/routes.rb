@@ -1,6 +1,7 @@
-Rails.application.routes.draw do
-   
+require 'sidekiq/web'
 
+Rails.application.routes.draw do
+  
   root "users#welcome"
 
   devise_for :users
@@ -10,8 +11,9 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :admin
   end
-  
-  
+
+  mount Sidekiq::Web => '/sidekiq'
+
   # resources :job_detail do
   #   resources :employees
   # end
@@ -25,17 +27,10 @@ Rails.application.routes.draw do
     end  
   end
 
-  
-
-  
-  
-
   resources :employer do
     resources :job_details
   end  
 
-  # resources :applicants do
-  #   resources :job_details
-  # end  
+  
   
 end

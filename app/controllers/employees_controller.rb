@@ -22,7 +22,7 @@ class EmployeesController < ApplicationController
 
  
   def create
-    @employee = current_user.employees.build(employee_params)
+    @employee = current_user.employees.new(employee_params)
 
     if @employee.save
       redirect_to new_job_detail_job_application_url(job_detail_id:params[:employee][:job_detail_id]), notice: 'Employee profile created successfully.'
