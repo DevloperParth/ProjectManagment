@@ -39,6 +39,7 @@ gem 'factory_bot_rails'
 gem 'simplecov', require: false, group: :test
 gem 'faker'
 
+
 gem 'shoulda-matchers', '~> 4.0'
 
 group :test do
@@ -104,4 +105,11 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'database_cleaner'
+
+end
+
+group :development, :test do
+  gem 'rails-controller-testing'
+  # ...
 end

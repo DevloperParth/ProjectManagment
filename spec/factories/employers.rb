@@ -1,14 +1,12 @@
 FactoryBot.define do
   factory :employer do
     name {"Cyber Infrastructure "}
-    email {"jobs@Cis.com"}
+    email { Faker::Internet.unique.email }
     address{"Eelectronic Complex"}
     city {"Indore"}
     state {"Madhya Pradesh"}
     country{"India"}
     contact{456789}
-    user
+    association :user
   end
-    
- 
 end

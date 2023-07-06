@@ -1,6 +1,6 @@
-class EmployersController < ApplicationController
-  
-  def index 
+class EmployersController < ApplicationController  
+  def index
+    debugger
     @employers = current_user.employers 
   end
   
