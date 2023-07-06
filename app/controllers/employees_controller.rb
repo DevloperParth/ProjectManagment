@@ -2,7 +2,7 @@ class EmployeesController < ApplicationController
 
   def index
     @employees = Employee.all
-    @job_details = JobDetail.all
+    #@job_details = JobDetail.all
   end
 
   def show

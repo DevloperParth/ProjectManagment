@@ -7,5 +7,6 @@ FactoryBot.define do
     contact_num {9109623120}
     skills {"xzy"}
     experience {"xyz"}
+    association :job_detail, factory: :job_detail
   end
 end

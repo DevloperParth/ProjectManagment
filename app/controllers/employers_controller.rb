@@ -1,7 +1,7 @@
 class EmployersController < ApplicationController  
+  
   def index
-    debugger
-    @employers = current_user.employers 
+    @employers = current_user.employer
   end
   
   def show

@@ -4,7 +4,7 @@ class Employee < ApplicationRecord
 
   has_many :job_applications
 
-  validates_presence_of :name, :city, :address, :contact_num, :attachment
+  validates_presence_of :name, :city, :address, :contact_num
   validates :email, presence: true, uniqueness: true
 end
 
